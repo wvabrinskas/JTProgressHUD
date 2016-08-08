@@ -32,9 +32,9 @@ typedef NS_ENUM(NSInteger, JTProgressHUDView) {
  BackgroundAlpha: The biggest alpha for the background.
  All parameters can be setup separately.
  */
-+ (void)showWithView:(UIView *)view style:(JTProgressHUDStyle)style transition:(JTProgressHUDTransition)transition backgroundAlpha:(CGFloat)backgroundAlpha;
++ (void)showWithView:(UIView *)view style:(JTProgressHUDStyle)style transition:(JTProgressHUDTransition)transition backgroundAlpha:(CGFloat)backgroundAlpha add:(BOOL)add;
 + (void)show;
-+ (void)showWithView:(UIView *)view;
++ (void)showWithView:(UIView *)view add:(BOOL)add;
 + (void)showWithStyle:(JTProgressHUDStyle)style;
 + (void)showWithTransition:(JTProgressHUDTransition)transition;
 + (void)showWithBackgroundAlpha:(CGFloat)backgroundAlpha;
@@ -43,5 +43,5 @@ typedef NS_ENUM(NSInteger, JTProgressHUDView) {
 + (void)hideWithTransition:(JTProgressHUDTransition)transition;
 
 + (BOOL)isVisible;
-
++(void)addView:(UIView *)view;
 @end

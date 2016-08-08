@@ -26,7 +26,6 @@ static CGFloat kBorderWidth = 3.0;
 @property (nonatomic, strong) UIView *customView;
 @property (nonatomic, assign) JTProgressHUDTransition transition;
 @property (nonatomic, assign) JTProgressHUDStyle style;
-
 @end
 
 @implementation JTProgressHUD
@@ -83,23 +82,23 @@ static CGFloat kBorderWidth = 3.0;
     [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn];
 }
 
-+ (void)showWithView:(UIView *)view {
-    [JTProgressHUD showWithView:view style:JTProgressHUDStyleGradient transition:JTProgressHUDTransitionDefault backgroundAlpha:kBGColorAlphaMax];
++ (void)showWithView:(UIView *)view add:(BOOL)add {
+    [JTProgressHUD showWithView:view style:JTProgressHUDStyleGradient transition:JTProgressHUDTransitionDefault backgroundAlpha:kBGColorAlphaMax add:add];
 }
 
 + (void)showWithStyle:(JTProgressHUDStyle)style {
-    [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn style:style transition:JTProgressHUDTransitionDefault backgroundAlpha:kBGColorAlphaMax];
+    [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn style:style transition:JTProgressHUDTransitionDefault backgroundAlpha:kBGColorAlphaMax add:false];
 }
 
 + (void)showWithTransition:(JTProgressHUDTransition)transition {
-    [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn style:JTProgressHUDStyleGradient transition:transition backgroundAlpha:kBGColorAlphaMax];
+    [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn style:JTProgressHUDStyleGradient transition:transition backgroundAlpha:kBGColorAlphaMax add:false];
 }
 
 + (void)showWithBackgroundAlpha:(CGFloat)backgroundAlpha {
-    [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn style:JTProgressHUDStyleGradient transition:JTProgressHUDTransitionDefault backgroundAlpha:backgroundAlpha];
+    [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn style:JTProgressHUDStyleGradient transition:JTProgressHUDTransitionDefault backgroundAlpha:backgroundAlpha add:false];
 }
 
-+ (void)showWithView:(UIView *)view style:(JTProgressHUDStyle)style transition:(JTProgressHUDTransition)transition backgroundAlpha:(CGFloat)backgroundAlpha {
++ (void)showWithView:(UIView *)view style:(JTProgressHUDStyle)style transition:(JTProgressHUDTransition)transition backgroundAlpha:(CGFloat)backgroundAlpha add:(BOOL)add {
     if ([[JTProgressHUD sharedInstance] isVisible]) {
         return;
     }
@@ -130,13 +129,13 @@ static CGFloat kBorderWidth = 3.0;
     }
     
     // View
-    if (view) {
-        sharedInstance.customView.center = sharedInstance.backgroundView.center;
+    [sharedInstance createDefaultLoadingView];
+    if (add) {
+        //sharedInstance.customView.center = sharedInstance.backgroundView.center;
+        sharedInstance.customView.center = CGPointMake(sharedInstance.backgroundView.center.x, sharedInstance.movingCircle.center.y + 100)
         [[UIApplication sharedApplication].keyWindow addSubview:sharedInstance.customView];
-    } else {
-        [sharedInstance createDefaultLoadingView];
     }
-    
+
     // Transition and animation
     sharedInstance.customView.alpha = 0.0;
     switch (transition) {
@@ -268,6 +267,7 @@ static CGFloat kBorderWidth = 3.0;
 }
 
 #pragma mark - JTProgressHUDView
+
 
 - (void)createDefaultLoadingView {
     // Default setup
