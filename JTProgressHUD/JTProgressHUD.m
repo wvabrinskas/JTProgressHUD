@@ -132,7 +132,8 @@ static CGFloat kBorderWidth = 3.0;
     [sharedInstance createDefaultLoadingView];
     if (add) {
         //sharedInstance.customView.center = sharedInstance.backgroundView.center;
-        sharedInstance.customView.center = CGPointMake(sharedInstance.backgroundView.center.x, sharedInstance.movingCircle.center.y + 100);
+        sharedInstance.movingCircle.center = CGPointMake(sharedInstance.movingCircle.center.x,sharedInstance.movingCircle.center.y - 50)
+        sharedInstance.customView.center = CGPointMake(sharedInstance.backgroundView.center.x + 30, sharedInstance.movingCircle.center.y + 50);
         [[UIApplication sharedApplication].keyWindow addSubview:sharedInstance.customView];
     }
 
