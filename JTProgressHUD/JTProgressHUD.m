@@ -79,7 +79,7 @@ static CGFloat kBorderWidth = 3.0;
 
 #pragma mark - Displaying
 + (void)show {
-    [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn];
+    [JTProgressHUD showWithView:JTProgressHUDViewBuiltIn add:false];
 }
 
 + (void)showWithView:(UIView *)view add:(BOOL)add {
@@ -132,7 +132,7 @@ static CGFloat kBorderWidth = 3.0;
     [sharedInstance createDefaultLoadingView];
     if (add) {
         //sharedInstance.customView.center = sharedInstance.backgroundView.center;
-        sharedInstance.customView.center = CGPointMake(sharedInstance.backgroundView.center.x, sharedInstance.movingCircle.center.y + 100)
+        sharedInstance.customView.center = CGPointMake(sharedInstance.backgroundView.center.x, sharedInstance.movingCircle.center.y + 100);
         [[UIApplication sharedApplication].keyWindow addSubview:sharedInstance.customView];
     }
 
