@@ -61,7 +61,6 @@ static CGFloat kBorderWidth = 3.0;
     sharedInstance.backgroundView.center = [UIApplication sharedApplication].keyWindow.center;
     sharedInstance.staticCircle.center = sharedInstance.backgroundView.center;
     sharedInstance.movingCircle.center = sharedInstance.backgroundView.center;
-    sharedInstance.customView.center = sharedInstance.backgroundView.center;
 }
 
 - (void)dealloc {
@@ -134,7 +133,7 @@ static CGFloat kBorderWidth = 3.0;
         //sharedInstance.customView.center = sharedInstance.backgroundView.center;
         sharedInstance.movingCircle.center = CGPointMake(sharedInstance.movingCircle.center.x,sharedInstance.movingCircle.center.y - 50);
         sharedInstance.staticCircle.center = CGPointMake(sharedInstance.staticCircle.center.x,sharedInstance.staticCircle.center.y - 50);
-        sharedInstance.customView.center = CGPointMake(sharedInstance.backgroundView.center.x + 24, sharedInstance.backgroundView.center.y + 50);
+        sharedInstance.customView.center = CGPointMake(sharedInstance.backgroundView.center.x + 24,sharedInstance.movingCircle.center.y + 150);
         [[UIApplication sharedApplication].keyWindow addSubview:sharedInstance.customView];
     }
 
